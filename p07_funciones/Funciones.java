@@ -1,8 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package p07_funciones;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -10,4 +10,62 @@ package p07_funciones;
  */
 public class Funciones {
     
+    public static void main(String[] args) {
+        
+         // Funciones
+        for (int index = 0; index < 5; index++) {
+            sendEmail();
+        }
+
+        // ...
+
+        sendEmail();
+
+        sendEmailToUser("fito@gmail.com");
+        sendEmailToUser("fito@gmail.com", "Mora"); //polimorfismo
+
+        var users = new ArrayList<>(Arrays.asList("fito@gmail.com", "mora@gmail.com"));
+        sendEmailToUser(users);
+
+        var state = sendEmailWithState("fito@gmail.com");
+        System.out.println(state);
+
+        System.out.println(sendEmailWithState(""));
+    }
+
+
+    // Función sin parámetros ni retorno
+    public static void sendEmail() {
+        System.out.println("Se envía el email");
+    }
+    
+
+    // Función con parámetros
+    public static void sendEmailToUser(String email) {
+        System.out.println("Se envía el email a " + email);
+    }
+
+    // Sobrecarga de funciones
+    public static void sendEmailToUser(String email, String name) {
+        System.out.println("Se envía el email a " + name + " (" + email + ")");
+    }
+
+    public static void sendEmailToUser(ArrayList<String> emails) {
+        for (String email: emails) {
+            sendEmailToUser(email);
+        }
+    }
+
+   
+    // Función con retorno
+    public static boolean sendEmailWithState(String email) {
+
+        if (email.isEmpty()) {
+            return false;
+        }
+
+        System.out.println("Se envía el email a " + email);
+        return true;
+    
+    }
 }
