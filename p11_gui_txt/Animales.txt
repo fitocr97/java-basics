@@ -1,0 +1,3 @@
+figaro,Perro,12
+michi,Gato,12313
+figaro,Hamster,12323
