@@ -146,7 +146,6 @@ public class NuevoAnimal extends javax.swing.JDialog {
 
             logica.agregar(gato);
             
-            System.out.println("entro ");
         }
         
         

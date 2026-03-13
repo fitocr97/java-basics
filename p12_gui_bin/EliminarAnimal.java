@@ -4,18 +4,20 @@
  */
 package p12_gui_bin;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Rodolfo
  */
 public class EliminarAnimal extends javax.swing.JDialog {
 
-    /**
-     * Creates new form EliminarAnimal
-     */
-    public EliminarAnimal(java.awt.Frame parent, boolean modal) {
+    Logica logica;
+     
+    public EliminarAnimal(java.awt.Frame parent, boolean modal, Logica logica) {
         super(parent, modal);
         initComponents();
+        this.logica = logica;
     }
 
     /**
@@ -30,7 +32,7 @@ public class EliminarAnimal extends javax.swing.JDialog {
         txtEliminar = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -50,10 +52,10 @@ public class EliminarAnimal extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setText("Regresar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnRegresarActionPerformed(evt);
             }
         });
 
@@ -70,7 +72,7 @@ public class EliminarAnimal extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(42, 42, 42)
-                        .addComponent(jButton2))
+                        .addComponent(btnRegresar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addComponent(jLabel1)
@@ -90,7 +92,7 @@ public class EliminarAnimal extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnRegresar))
                 .addGap(45, 45, 45))
         );
 
@@ -101,20 +103,38 @@ public class EliminarAnimal extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEliminarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
+        if(txtEliminar.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Debe ingresar un id", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        }
         
-        this.dispose();
+        String id = txtEliminar.getText();
+        
+        if(logica.buscar(id) == null){
+            JOptionPane.showMessageDialog(this, "Id no encontrado", "mensaje", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            logica.eliminar(id);
+            
+            JOptionPane.showMessageDialog(this, "Animal eliminado", "mensaje", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        }
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField txtEliminar;
