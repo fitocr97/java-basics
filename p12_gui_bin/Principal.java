@@ -35,9 +35,9 @@ public class Principal extends javax.swing.JFrame {
 
         modelo.addRow(new Object[]{
             a.getId(),
-            a.getTipo(),
             a.getNombre(),
-            a.getEdad()
+            a.getEdad(),
+            a.getTipo()
         });
 
     }

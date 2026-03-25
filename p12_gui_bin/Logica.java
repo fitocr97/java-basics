@@ -49,18 +49,22 @@ public class Logica {
         }
     }
 
-    public void actualizar(Animal nuevo) {
+   public void actualizar(Animal nuevo) {
 
-        for (int i = 0; i < animales.size(); i++) {
+    int index = 0;
 
-            if (animales.get(i).getId().equalsIgnoreCase(nuevo.getId())) {
+    for (Animal g : animales) {
 
-                animales.set(i, nuevo);
-                guardarArchivo();
-                break;
-            }
+        if (g.getId().equalsIgnoreCase(nuevo.getId())) {
+
+            animales.set(index, nuevo);
+            guardarArchivo();
+            break;
         }
+
+        index++;
     }
+}
 
     private void guardarArchivo() {
      
